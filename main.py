@@ -11,3 +11,11 @@ mean = np.mean(images, axis=0)
 centered = images - mean
 cov = (centered.T @ centered) / (centered.shape[0] - 1)
 eigenvalues, eigenvectors = np.linalg.eigh(cov)
+
+indices = np.argsort(eigenvalues)[::-1]
+eigenvalues = eigenvalues[indices]
+eigenvectors = eigenvectors[:, indices]
+eigenvalues = eigenvalues[:30]
+eigenvectors = eigenvectors[:, :30]
+
+
