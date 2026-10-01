@@ -31,7 +31,7 @@ plt.show()
 """
 
 # Used to plot the top 30 eigenvectors
-
+"""
 fig, axes = plt.subplots(5, 6, figsize=(12, 10))
 for i, ax in enumerate(axes.flat):
     ax.imshow(eigenvectors[:, i].reshape(28, 28), cmap='gray')
@@ -40,7 +40,7 @@ for i, ax in enumerate(axes.flat):
 
 plt.tight_layout()
 plt.show()
-
+"""
 
 with open("data/train-labels.idx1-ubyte", "rb") as f:
     magic, num_labels = struct.unpack(">II", f.read(8))
