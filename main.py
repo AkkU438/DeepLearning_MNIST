@@ -20,18 +20,14 @@ eigenvalues = eigenvalues[:30]
 eigenvectors = eigenvectors[:, :30]
 
 # Used to plot the top 30 eigenvalues
-""""
 plt.figure(figsize=(8, 5))
 plt.plot(range(1, 31), eigenvalues, marker="o")
 plt.xlabel("Principal Component")
 plt.ylabel("Eigenvalue (Variance)")
 plt.title("Top 30 eigenvalues")
 plt.grid(True, alpha=0.3)
-plt.show()
-"""
 
 # Used to plot the top 30 eigenvectors
-"""
 fig, axes = plt.subplots(5, 6, figsize=(12, 10))
 for i, ax in enumerate(axes.flat):
     ax.imshow(eigenvectors[:, i].reshape(28, 28), cmap='gray')
@@ -39,18 +35,14 @@ for i, ax in enumerate(axes.flat):
     ax.axis('off')
 
 plt.tight_layout()
-plt.show()
-"""
 
 with open("data/train-labels.idx1-ubyte", "rb") as f:
     magic, num_labels = struct.unpack(">II", f.read(8))
     labels = np.frombuffer(f.read(), dtype=np.uint8)
 
 # Used to plot the different digits with varying PCAs and calculate the MSE
-"""
 
 digit_indices = [1,3,5,7,2,0,13,15,17,4]
-
 
 ks = [2, 5, 20, 30]
 mse_table = np.zeros((10, len(ks)))
@@ -78,6 +70,9 @@ for d, idx in enumerate(digit_indices):
 for ax in axes.flat:
     ax.axis("off")
 
+print("MSE table (rows = digits 0-9, columns = k = 2, 5, 20, 30)")
+print(np.round(mse_table, 4))
+print("Average per k:", np.round(mse_table.mean(axis=0), 4))
+
 plt.tight_layout()
 plt.show()
-"""
